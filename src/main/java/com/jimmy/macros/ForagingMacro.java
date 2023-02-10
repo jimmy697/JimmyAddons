@@ -1,6 +1,5 @@
 package com.jimmy.macros;
 
-import cc.polyfrost.oneconfig.utils.TickDelay;
 import com.jimmy.config.JimmyConfig;
 import com.jimmy.utils.PlayerUtil;
 import net.minecraft.block.Block;
@@ -90,7 +89,11 @@ public class ForagingMacro {
                         KeyBinding.onTick(mc.gameSettings.keyBindUseItem.getKeyCode());
                         boneTickCount = 0;
                         findRodTickCount = 0;
-                        macroState = MacroState.FIND_ROD;
+                        if(JimmyConfig.rodSwap) {
+                            macroState = MacroState.FIND_ROD;
+                        } else {
+                            macroState = MacroState.THROW_BREAK_DELAY;
+                        }
                     }
                     return;
                 case FIND_ROD:

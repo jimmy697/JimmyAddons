@@ -10,7 +10,7 @@ import static com.jimmy.config.JimmyConfig.configForaging;
 public class ForagingCommand extends Command {
 
     public ForagingCommand() {
-        super("foragingmacro");
+        super("forage");
     }
 
     @DefaultHandler

@@ -25,7 +25,6 @@ loom {
             arg("--tweakClass", "org.spongepowered.asm.launch.MixinTweaker")
             arg("--mixin", "mixins.jimmyaddons.json")
             arg("--tweakClass", "gg.essential.loader.stage0.EssentialSetupTweaker")
-            arg("--tweakClass", "cc.polyfrost.oneconfigwrapper.OneConfigWrapper")
         }
     }
     forge {
@@ -48,7 +47,6 @@ sourceSets.main {
 repositories {
     mavenCentral()
     maven("https://repo.spongepowered.org/maven/")
-    maven("https://repo.polyfrost.cc/releases")
     // If you don't want to log in with your real minecraft account, remove this line
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
     maven("https://repo.sk1er.club/repository/maven-public/")
@@ -68,8 +66,6 @@ dependencies {
     minecraft("com.mojang:minecraft:1.8.9")
     mappings("de.oceanlabs.mcp:mcp_stable:22-1.8.9")
     forge("net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9")
-    compileOnly("cc.polyfrost:oneconfig-1.8.9-forge:0.1.0-alpha+")
-    shadowImpl("cc.polyfrost:oneconfig-wrapper-launchwrapper:1.0.0-alpha+")
     shadowImpl("gg.essential:loader-launchwrapper:1.1.3")
     implementation("gg.essential:essential-1.8.9-forge:11092+gecb85a783")
 
@@ -95,10 +91,6 @@ tasks.withType(Jar::class) {
     manifest.attributes.run {
         this["FMLCorePluginContainsFMLMod"] = "true"
         this["ForceLoadAsMod"] = "true"
-        this["ModSide"] = "CLIENT"
-        this["TweakOrder"] = "0"
-        this["ForceLoadAsMod"] = "true"
-        this["TweakClass"] = "cc.polyfrost.oneconfigwrapper.OneConfigWrapper"
 
         // If you don't want mixins, remove these lines
         //ADD THIS IF OTHER THING DONT OWOORK
