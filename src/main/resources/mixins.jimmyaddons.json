@@ -1,11 +1,12 @@
 {
-  "package": "com.jimmy.mixin",
+  "package": "jimmy.mixin",
   "refmap": "mixins.jimmyaddons.refmap.json",
   "minVersion": "0.7",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
   ],
   "client": [
-    "MixinEntityPlayerSP"
+    "MixinEntityPlayerSP",
+    "MixinNetHandlerPlayClient"
   ]
 }

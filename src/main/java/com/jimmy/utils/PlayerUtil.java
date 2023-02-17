@@ -34,4 +34,8 @@ public class PlayerUtil {
         }
     }
 
+    public static boolean isDecimalPartApproximately(double fullValue, double expectedDecimalPart) {
+        return (Math.abs(Math.abs(fullValue % 1.0D) - expectedDecimalPart) < 0.01D);
+    }
+
 }

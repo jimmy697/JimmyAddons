@@ -36,41 +36,11 @@ public class JimmyConfig extends Vigilant {
     )
     public static boolean chestAura = false;
 
-    //gemstone esp
-//    @Property(
-//            type = PropertyType.SWITCH, name = "Gemstone ESP", category = "Gemstone ESP"
-//    )
-//    public static boolean gemEsp = false;
-//
-//    @Property(
-//            type = PropertyType.SWITCH, name = "Ruby", category = "Gemstone ESP"
-//    )
-//    public static boolean rubyESP = false;
-//
-//    @Property(
-//            type = PropertyType.SWITCH, name = "Jade", category = "Gemstone ESP"
-//    )
-//    public static boolean jadeESP = false;
-//
-//    @Property(
-//            type = PropertyType.SWITCH, name = "Amber", category = "Gemstone ESP"
-//    )
-//    public static boolean amberESP = false;
-//
-//    @Property(
-//            type = PropertyType.SWITCH, name = "Topaz", category = "Gemstone ESP"
-//    )
-//    public static boolean topazESP = false;
-//
-//    @Property(
-//            type = PropertyType.SWITCH, name = "Sapphire", category = "Gemstone ESP"
-//    )
-//    public static boolean sapphireESP = false;
-//
-//    @Property(
-//            type = PropertyType.SWITCH, name = "Amethyst", category = "Gemstone ESP"
-//    )
-//    public static boolean amethystESP = false;
+    //Glowing Mushroom Nuker
+    @Property(
+            type = PropertyType.SWITCH, name = "Glowing Mushroom Aura/Nuker", description = "Automatically destroys glowing mushrooms in the player's range. Also highlights them.", category = "Nuker"
+    )
+    public static boolean shroomNuker = false;
 
     public static JimmyConfig INSTANCE = new JimmyConfig();
 

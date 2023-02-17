@@ -1,7 +1,9 @@
 package com.jimmy;
 
 import com.jimmy.commands.*;
+import com.jimmy.events.JimmyEvent;
 import com.jimmy.features.ChestAura;
+import com.jimmy.features.GlowingMushroomNuker;
 import com.jimmy.macros.ForagingMacro;
 import com.jimmy.macros.MacroUtil;
 import gg.essential.api.EssentialAPI;
@@ -34,7 +36,7 @@ public class JimmyAddons {
                 new JimmyCommand(), new ForagingCommand()
         );
         registerEvents(
-                new MacroUtil(), new ForagingMacro(), new ChestAura()
+                new MacroUtil(), new ForagingMacro(), new ChestAura(), new JimmyEvent(), new GlowingMushroomNuker()
         );
         registerKeybinds(
 
