@@ -95,7 +95,7 @@ tasks.withType(Jar::class) {
         // If you don't want mixins, remove these lines
         //ADD THIS IF OTHER THING DONT OWOORK
         this["TweakClass"] = "gg.essential.loader.stage0.EssentialSetupTweaker"
-        this["TweakClass"] = "org.spongepowered.asm.launch.MixinTweaker"
+//        this["TweakClass"] = "org.spongepowered.asm.launch.MixinTweaker"
         this["MixinConfigs"] = "mixins.jimmyaddons.json"
     }
 }

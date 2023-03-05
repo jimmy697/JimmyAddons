@@ -2,50 +2,69 @@ package com.jimmy;
 
 import com.jimmy.commands.*;
 import com.jimmy.events.JimmyEvent;
-import com.jimmy.features.ChestAura;
-import com.jimmy.features.GlowingMushroomNuker;
+import com.jimmy.events.TickStartEvent;
+import com.jimmy.features.dungeons.AutoClose;
+import com.jimmy.features.dungeons.AutoReady;
+import com.jimmy.features.dungeons.ShowDungeonMobs;
+import com.jimmy.features.nuker.GlowingMushroomNuker;
+import com.jimmy.features.player.TpWithAnything;
+import com.jimmy.keybinds.AutoJoinSb;
 import com.jimmy.macros.ForagingMacro;
 import com.jimmy.macros.MacroUtil;
+import com.jimmy.utils.Locations;
+import com.jimmy.utils.SBInfo;
 import gg.essential.api.EssentialAPI;
 import gg.essential.api.commands.Command;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.io.File;
 
 @Mod(modid = "jimmyaddons", name = "JimmyAddons", version = "1.0.0", clientSideOnly = true)
 @SideOnly(Side.CLIENT)
 public class JimmyAddons {
 
-    @Mod.Instance("jimmyaddons")
-    public static JimmyAddons instance;
-
-    public static File modFile = null;
-
     public static boolean foragingEnabled = false;
+
+    public static Locations location = Locations.NULL;
+
+    private KeyBinding autoJoinSb;
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         registerCommands(
-                new JimmyCommand(), new ForagingCommand()
-        );
-        registerEvents(
-                new MacroUtil(), new ForagingMacro(), new ChestAura(), new JimmyEvent(), new GlowingMushroomNuker()
+                new JimmyCommand(), new ForagingCommand(), new TickTest()
         );
         registerKeybinds(
-
+                autoJoinSb = new AutoJoinSb()
         );
+        registerEvents(
+                new MacroUtil(),
+                new ForagingMacro(),
+                new JimmyEvent(),
+                new GlowingMushroomNuker(),
+                new AutoClose(),
+                new SBInfo(),
+                new TickStartEvent(),
+                new ShowDungeonMobs(),
+                new AutoReady(),
+                new TpWithAnything(),
+                autoJoinSb
+        );
+
     }
 
-    @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        modFile = event.getSourceFile();
+    @SubscribeEvent
+    public void onWorldLoad(WorldEvent.Load event) {
+        location = Locations.NULL;
     }
 
     private void registerKeybinds(KeyBinding... keybinds) {
@@ -64,5 +83,12 @@ public class JimmyAddons {
         for (Command command : commands) {
             EssentialAPI.getCommandRegistry().registerCommand(command);
         }
+    }
+
+    @SubscribeEvent
+    public void onTick(TickEvent.PlayerTickEvent event) {
+        if(Minecraft.getMinecraft().theWorld == null)
+            return;
+        MinecraftForge.EVENT_BUS.post((Event)new TickStartEvent());
     }
 }

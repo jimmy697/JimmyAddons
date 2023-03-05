@@ -29,13 +29,6 @@ public class JimmyConfig extends Vigilant {
     )
     public static int foragingCycleDelay;
 
-
-    //Chest aura
-    @Property(
-            type = PropertyType.SWITCH, name = "Chest Aura/Secret Aura", description = "does what the title says, but kinda shitty and USE AT YOUR OWN RISK!", category = "Dungeons"
-    )
-    public static boolean chestAura = false;
-
     //Glowing Mushroom Nuker
     @Property(
             type = PropertyType.SWITCH, name = "Glowing Mushroom Aura/Nuker", description = "Automatically destroys glowing mushrooms in the player's range. Also highlights them.", category = "Nuker"
@@ -43,6 +36,55 @@ public class JimmyConfig extends Vigilant {
     public static boolean shroomNuker = false;
 
     public static JimmyConfig INSTANCE = new JimmyConfig();
+
+    //Auto Close Chests
+    @Property(
+            type = PropertyType.SWITCH, name = "Auto Close Secret Chests", description = "does what the title says", category = "Dungeons", subcategory = "Misc"
+    )
+    public static boolean autoClose = false;
+
+    //Show Hidden Entities
+    @Property(
+            type = PropertyType.SWITCH, name = "Show Hidden Dungeon Mobs", description = "title.", category = "Dungeons", subcategory = "Render"
+    )
+    public static boolean showHidden = false;
+
+    //Auto Ready
+    @Property(
+            type = PropertyType.SWITCH, name = "Auto Ready Up", description = "Automatically ready's you up in a dungeon when opening mort", category = "Dungeons", subcategory = "Misc"
+    )
+    public static boolean autoReady = false;
+
+    //Tp With Anything
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Teleport With Anything",
+            description = "Allows you to teleport with anything on right click.",
+            category = "Player",
+            subcategory = "Misc"
+    )
+    public static boolean tpAnything = false;
+
+    @Property(
+            type = PropertyType.SLIDER,
+            name = "TP Slot",
+            description = "The slot ur item is in u want to tp with. 0 = 1st slot, and so on.",
+            category = "Player",
+            subcategory = "Misc",
+            max = 8
+    )
+    public static int tpSlot = 0;
+
+    //Auto Join Sb
+    @Property(
+            type = PropertyType.SWITCH,
+            name = "Auto Join Skyblock",
+            description = "Joins skyblock on key press, you can change this in ur keybind settings.",
+            category = "Player",
+            subcategory = "Misc"
+    )
+    public static boolean autoSB = true;
+
 
     public JimmyConfig() {
         super(new File("./config/jimmyaddons.toml"));
